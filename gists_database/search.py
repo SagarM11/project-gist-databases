@@ -1,7 +1,7 @@
 from .models import Gist
 
 def search_gists(db_connection, **kwargs):
-    
+    result = []
     if github_id is None and created_at is None:
         query = 'select * from gists'
     elif github_id is not None and created_at is None:
@@ -12,4 +12,7 @@ def search_gists(db_connection, **kwargs):
         query = 'select * from gists where created_at = :created_at'
         
      cursor = db_connect.execute(query)
-     return(cursor.fetchall())
+     for gist in cursor.fetchall():
+       result.append(gist)
+    
+     return(result)
