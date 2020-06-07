@@ -12,7 +12,7 @@ def search_gists(db_connection, **kwargs):
         query = 'select * from gists where created_at = :created_at'
         
      cursor = db_connect.execute(query)
-     for gist in cursor.fetchall():
-       result.append(gist)
+     for g in cursor.fetchall():
+       result.append(g)
     
      return(result)
